@@ -23,7 +23,6 @@ public class TestMaxTileExists {
         };
 
         b = new Board(rawVals, 0);
-
         assertFalse("Board is empty\n" + b, Model.maxTileExists(b));
     }
 
