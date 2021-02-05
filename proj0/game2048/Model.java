@@ -6,7 +6,7 @@ import java.util.Observable;
 
 
 /** The state of a game of 2048.
- *  @author Jiale (Peter) ///
+ *  @author Jiale (Peter)
  */
 public class Model extends Observable {
     /** Current contents of the board. */
@@ -213,7 +213,7 @@ public class Model extends Observable {
      */
     public static boolean maxTileExists(Board b) {
         // TODO: Fill in this function.
-        /** first way
+        /* first way
         for (int i = 0; i < b.size(); i++) {
             for (int j = 0; j < b.size(); j++) {
                 if (b.tile(j, i) != null && b.tile(j, i).value() == MAX_PIECE) {
@@ -272,7 +272,7 @@ public class Model extends Observable {
 
 
     @Override
-     /** Returns the model as a string, used for debugging. */
+     /* Returns the model as a string, used for debugging. */
     public String toString() {
         Formatter out = new Formatter();
         out.format("%n[%n");
@@ -292,7 +292,7 @@ public class Model extends Observable {
     }
 
     @Override
-    /** Returns whether two models are equal. */
+    /* Returns whether two models are equal. */
     public boolean equals(Object o) {
         if (o == null) {
             return false;
