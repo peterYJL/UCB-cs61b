@@ -1,6 +1,8 @@
 package deque;
 
-public interface Deque<T> {
+import java.util.Iterator;
+
+public interface Deque<T> extends Iterable<T> {
 
     /**
      * Adds an item of type T to the front of the deque.
@@ -20,7 +22,9 @@ public interface Deque<T> {
      * Check whether deque is empty
      * @return Returns true if deque is empty, false otherwise.
      */
-    public boolean isEmpty();
+    default boolean isEmpty() {
+        return size() == 0;
+    }
 
     /**
      * Size of Deque
@@ -33,7 +37,12 @@ public interface Deque<T> {
      * separated by a space. Once all the items have been printed,
      * print out a new line.
      */
-    public void printDeque();
+    default public void printDeque() {
+        for (T item : this) {
+            System.out.print(item + " ");
+        }
+        System.out.println();
+    }
 
     /**
      * Removes and returns the item at the front of the deque.
