@@ -17,6 +17,13 @@ public class ArrayDeque<T> implements Deque<T> {
         size = 0;
     }
 
+    public ArrayDeque(int capacity) {
+        items = (T[]) new Object[capacity];
+        nextHead = 0;
+        tail = 0;
+        size = 0;
+    }
+
     private void resize(int newCapacity) {
         T[] newItems = (T[]) new Object[newCapacity];
         if (nextHead >= tail) {
@@ -101,13 +108,29 @@ public class ArrayDeque<T> implements Deque<T> {
         if (index >= this.size) {
             return null;
         }
-        return this.items[index];
+        return this.items[(plusIndex(nextHead) + index) % items.length];
     }
 
     @Override
     @Nonnull
     public Iterator<T> iterator() {
         return new ArrayDequeIterator();
+    }
+
+    public boolean equals(Object o) {
+        if (!(o instanceof ArrayDeque)) {
+            return false;
+        }
+        Deque<?> list = (Deque<?>) o;
+        if (this.size != list.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (this.get(i) != list.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private class ArrayDequeIterator implements Iterator<T> {
@@ -134,18 +157,23 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     public static void main(String [] args) {
-        ArrayDeque<Integer> ADeque = new ArrayDeque<>();
+        Deque<Integer> ADeque = new ArrayDeque<>();
         ADeque.addFirst(1);
         ADeque.addFirst(2);
         ADeque.addFirst(3);
         ADeque.addFirst(4);
-        ADeque.addFirst(5);
-        ADeque.addFirst(6);
-        ADeque.addFirst(7);
-        ADeque.addFirst(8);
-        ADeque.addFirst(9);
 
-        ADeque.printDeque();
-        System.out.println(ADeque.size());
+        Deque<Integer> ADeque2 = new ArrayDeque<>();
+        ADeque2.addFirst(1);
+        ADeque2.addFirst(2);
+        ADeque2.addFirst(3);
+        ADeque2.addFirst(4);
+
+        //ADeque.printDeque();
+        System.out.println(ADeque.get(0));
+        System.out.println(ADeque.get(1));
+        System.out.println(ADeque.get(2));
+        System.out.println(ADeque.get(3));
+        System.out.println(ADeque.get(5));
     }
 }
